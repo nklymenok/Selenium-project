@@ -1,4 +1,4 @@
-﻿using Milliman.Pixel.Web.Tests.PageObjects;
+using Milliman.Pixel.Web.Tests.PageObjects;
 using Milliman.Pixel.Web.Tests.PageObjects.Pages.DDL;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -44,9 +44,8 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         public void InitializeAdmin()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
-            //driver.Url = "https://preprod.millimanpixel.com/";
-
+            driver.Url = "https://pixel.com";
+           
             driver.Manage().Window.Maximize();
             loginPage = new LoginPage(driver);
 
@@ -59,7 +58,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         [TestCaseSource(typeof(DDLTestCases), "ImportDatasetsTestData")]
         public void UploadDatasetByUserTest(string type, string datasetDifference)
         {
-            loginPage.LoginToApplication(user, "NBV87^yu");
+            loginPage.LoginToApplication(user, "34566");
 
             var datasetName = $"{DatasetUserDescription(type)} {datasetDifference}";
 
@@ -71,9 +70,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
 
             dataProcessingStatus.CheckRefreshRateToMinimum();
 
-            //Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Integration/DataProcessingStatus"),
-            //    "Data processing Page is not opened");
-
+            
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(user, dataProcessingStatus.ClientUser[0].Text, "Incorrect User in User column");

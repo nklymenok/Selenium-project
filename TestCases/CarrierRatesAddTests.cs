@@ -1,4 +1,4 @@
-ï»¿using Milliman.Pixel.Web.Tests.PageObjects;
+using Milliman.Pixel.Web.Tests.PageObjects;
 using Milliman.Pixel.Web.Tests.PageObjects.Pages.DDL;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,7 +19,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         WebDriverWait wait;
         WebDriverWait waitQuick;
 
-        static string user = "01_testuserAuto";
+        static string user = "testuserAuto";
 
         static string randomString = Utils.RandomString(5);
 
@@ -35,14 +35,13 @@ namespace Milliman.Pixel.Web.Tests.TestCases
 
         string carrierNameTip = "The carrier name should be a unique identifier for these rates which are easily identifiable.You cannot enter a duplicate carrier name nor can you change it once it is added.However, it can be deleted later if necessary";
 
-        string rateFileTip = "The format of the carrier rates file can either be a comma (\",\") or pipe (â€œ|â€) delimited file consisting of 2 required columns:PolicyID: unique key identifier of the policy recordTotal: Amount of the premium for the specific policyCurrency amounts should not have a denomination symbol, nor should they have a comma indicating thousands.Also, the decimal symbol should be a period.Example of PSV filePolicyID | Total10001 | 326510002 | 262210003 | 3972Example of CSV filePolicyID , Total10001 , 326510002 , 262210003 , 3972The suffix for the filename must correspond to the delimiter field, for examples filename.csv or filename.psv";
+        string rateFileTip = "The format of the carrier rates file can either be a comma (\",\") or pipe (“|”) delimited file consisting of 2 required columns:PolicyID: unique key identifier of the policy recordTotal: Amount of the premium for the specific policyCurrency amounts should not have a denomination symbol, nor should they have a comma indicating thousands.Also, the decimal symbol should be a period.Example of PSV filePolicyID | Total10001 | 326510002 | 262210003 | 3972Example of CSV filePolicyID , Total10001 , 326510002 , 262210003 , 3972The suffix for the filename must correspond to the delimiter field, for examples filename.csv or filename.psv";
 
         [SetUp]
         public void Initialize()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
-            //driver.Url = "https://preprod.millimanpixel.com/";
+            driver.Url = "https://pixel.com";
             driver.Manage().Window.Maximize();
             loginPage = new LoginPage(driver);
             loginPage.LoginToApplication();
@@ -65,9 +64,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
 
             Assert.Multiple(() =>
             {
-                //Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/CarrierRates/AddRates"),
-                //"failed to open Carrier Rates: Add page");
-                Assert.AreEqual("Carrier Rates: Add", carrierAddPage.CarrierAddTestLocator.Text, "Incorrect page is opened");
+Assert.AreEqual("Carrier Rates: Add", carrierAddPage.CarrierAddTestLocator.Text, "Incorrect page is opened");
             });
         }
 

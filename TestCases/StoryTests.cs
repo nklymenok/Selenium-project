@@ -1,4 +1,4 @@
-﻿using Milliman.Pixel.Web.Tests.PageObjects;
+using Milliman.Pixel.Web.Tests.PageObjects;
 using Milliman.Pixel.Web.Tests.PageObjects.Pages;
 using Milliman.Pixel.Web.Tests.PageObjects.Pages.DDL;
 using NUnit.Framework;
@@ -45,9 +45,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         public void InitializeAdmin()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
-            //driver.Url = "https://preprod.millimanpixel.com/";
-
+            driver.Url = "https://pixel.com";
             driver.Manage().Window.Maximize();
             loginPage = new LoginPage(driver);
 
@@ -69,10 +67,6 @@ namespace Milliman.Pixel.Web.Tests.TestCases
             Utils.WaitUntilLoadingDisappears(driver);
 
             dataProcessingStatus.CheckRefreshRateToMinimum();
-
-            //Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Integration/DataProcessingStatus"),
-            //    "Data processing Page is not opened");
-
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(user, dataProcessingStatus.ClientUser[0].Text, "Incorrect User in User column");
@@ -111,9 +105,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
 
             var defaultDatasetPage = new DefaultDatasetsPage(driver);
 
-            //Assert.True(driver.Url.Contains("https://qa.millimanpixel.com/Dashboard/StoryPage/"),
-            //   "default page is not opened");
-
+            
             defaultDatasetPage.ExpandFilterLocator.WaitForElementPresentAndEnabled(driver, 100);
 
             defaultDatasetPage.ExpandFilterLocator.WaitForElementPresentAndEnabled(driver).Click();

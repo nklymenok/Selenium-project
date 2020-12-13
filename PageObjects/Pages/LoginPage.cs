@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -27,7 +27,7 @@ namespace Milliman.Pixel.Web.Tests.PageObjects
         [FindsBy(How = How.XPath, Using = "//*[@id='loginForm']//div[1]//li")]
         public IWebElement FailedLoginMessageLocator { get; set; }
 
-        public void LoginToApplication(string login = "01_testuserAuto@test.com", string password = "Qaz!23")
+        public void LoginToApplication(string login = "@test.com", string password = "Qaz!**")
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(100));
 

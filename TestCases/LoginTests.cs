@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Milliman.Pixel.Web.Tests.PageObjects;
@@ -15,7 +15,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         public void Initialize()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
+            driver.Url = "https://pixel.com";
             driver.Manage().Window.Maximize();
 
             loginPage = new LoginPage(driver);
@@ -34,7 +34,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         {
             loginPage.LoginToApplication();
 
-            Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Dashboard/DashboardGridOpen"),
+            Assert.True(driver.Url.Equals("https://pixel.com/Dashboard/DashboardGridOpen"),
                 "failed to login");
         }
 
@@ -42,7 +42,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         [CustomRetry]
         public void LoginWithIncorrectCredentialsTest()
         {
-            loginPage.LoginToApplication("10_testuser@test1.com", "NBV87^yu");
+            loginPage.LoginToApplication("10_testuser@test1.com", "3266");
 
             Assert.AreEqual("Failed Login. Please contact pixelsupport@millimanpixel.com for assistance",
                 loginPage.FailedLoginMessageLocator.Text, "Incorrect error message");

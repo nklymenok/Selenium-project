@@ -1,4 +1,4 @@
-﻿using Milliman.Pixel.Web.Tests.PageObjects;
+using Milliman.Pixel.Web.Tests.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -24,9 +24,8 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         public void Initialize()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
-           // driver.Url = "https://preprod.millimanpixel.com/";
-            driver.Manage().Window.Maximize();
+            driver.Url = "https://pixel.com";
+                    driver.Manage().Window.Maximize();
             loginPage = new LoginPage(driver);
             loginPage.LoginToApplication();
         }
@@ -41,7 +40,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
 
             menu.UserManagementMenuLocator.Click();
 
-            Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Administrator/UserManagement"),
+            Assert.True(driver.Url.Equals("https://pixel.com/Administrator/UserManagement"),
                 "UserManagement page is not opened");
         }
 

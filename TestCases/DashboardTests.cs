@@ -1,4 +1,4 @@
-﻿using Milliman.Pixel.Web.Tests.PageObjects;
+using Milliman.Pixel.Web.Tests.PageObjects;
 using Milliman.Pixel.Web.Tests.PageObjects.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -14,14 +14,13 @@ namespace Milliman.Pixel.Web.Tests.TestCases
     {
         IWebDriver driver;
         LoginPage loginPage;
-        private const string password = "Qaz!23";
+        private const string password = "Qaz!**";
 
         [SetUp]
         public void Initialize()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
-            //driver.Url = "https://preprod.millimanpixel.com/";
+            driver.Url = "https://pixel.com";
             driver.Manage().Window.Maximize();
 
             loginPage = new LoginPage(driver);
@@ -49,12 +48,12 @@ namespace Milliman.Pixel.Web.Tests.TestCases
             menu.DataMenuLocator.ClickEx(driver);
 
             menu.ProcessingStatusMenuLocator.ClickEx(driver);
-            Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Integration/DataProcessingStatus"),
+            Assert.True(driver.Url.Equals("https://pixel.com/Integration/DataProcessingStatus"),
                 "Data processing Page is not opened");
 
             dashboardPage.LogoLocator.ClickEx(driver);
 
-            Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Dashboard/DashboardGridOpen"),
+            Assert.True(driver.Url.Equals("https://pixel.com/Dashboard/DashboardGridOpen"),
                 "Dashboard grid view is not opened");
         }
 
@@ -64,7 +63,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         {
             var dashboardPage = new DashboardPage(driver);
 
-            Assert.AreEqual("01_testuserAuto", dashboardPage.WelcomeUsernameLocator.Text,
+            Assert.AreEqual("userAuto", dashboardPage.WelcomeUsernameLocator.Text,
                 $"{dashboardPage.WelcomeUsernameLocator.Text} displays instead of 01_testuserAuto");
         }
 
@@ -131,32 +130,19 @@ namespace Milliman.Pixel.Web.Tests.TestCases
 
             loginPage.LoginToApplication("01_testuserAuto@test.com", "Qaz!@3");
 
-            //Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Dashboard/DashboardGridOpen"),
-            //    "User is not logged in, password are not updated");
-
             dashboardPage.WelcomeUsernameLocator.ClickEx(driver);
             dashboardPage.UpdateProfileLocator.Click();
 
             dashboardPage.NewPasswordLocator.WaitForElementPresentAndEnabled(driver).Clear();
-            dashboardPage.NewPasswordLocator.SendKeys("Qaz!23");
+            dashboardPage.NewPasswordLocator.SendKeys("Qaz!**");
 
-            dashboardPage.ConfirmNewPasswordLocator.SendKeys("Qaz!23");
+            dashboardPage.ConfirmNewPasswordLocator.SendKeys("Qaz!**");
             dashboardPage.UpdateButtonLocator.Click();
 
             Utils.WaitUntilLoadingDisappears(driver);
         }
 
-        //[Test]
-        [CustomRetry]
-        public void CheckLogOffTest()
-        {
-            var dashboardPage = new DashboardPage(driver);
-
-            dashboardPage.WelcomeUsernameLocator.ClickEx(driver);
-            dashboardPage.LogOffLocator.ClickEx(driver);
-
-            Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Account/Login"), "User is not logged off");
-        }
+        
 
         [Test]
         [CustomRetry]
@@ -166,8 +152,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
 
             Assert.Multiple(() =>
             {
-                //Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Dashboard/DashboardGridOpen"), "Incorrect URL opens");
-                Assert.True(dashboardPage.GridViewRadioButtonLocator.Selected, "GridView radio button is not selected");
+                              Assert.True(dashboardPage.GridViewRadioButtonLocator.Selected, "GridView radio button is not selected");
                 Assert.False(dashboardPage.TreeViewRadioButtonLocator.Selected, "TreeView radio button is selected");
             });
         }

@@ -1,4 +1,4 @@
-﻿using Milliman.Pixel.Web.Tests.PageObjects;
+using Milliman.Pixel.Web.Tests.PageObjects;
 using Milliman.Pixel.Web.Tests.PageObjects.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -18,26 +18,11 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         public void Initialize()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
-            //driver.Url = "https://preprod.millimanpixel.com/";
-            driver.Manage().Window.Maximize();
+            driver.Url = "https://pixel.com";            		 		 driver.Manage().Window.Maximize();
             loginPage = new LoginPage(driver);
             loginPage.LoginToApplication();
         }
 
-        //[Test]
-        [CustomRetry]
-        public void CheckDataManagementPageOpensTest()
-        {
-            var menu = new MenuPage(driver);
-
-            menu.AdministrationMenuLocator.ClickEx(driver);
-
-            menu.DataManagementMenuLocator.Click();
-
-            Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Administrator/TableManagement"),
-                "DataManagement page is not opened");
-        }
 
         [Test]
         [CustomRetry]

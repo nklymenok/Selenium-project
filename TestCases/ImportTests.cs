@@ -1,4 +1,4 @@
-﻿using Milliman.Pixel.Web.Tests.PageObjects;
+using Milliman.Pixel.Web.Tests.PageObjects;
 using Milliman.Pixel.Web.Tests.PageObjects.Pages.DDL;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -35,8 +35,8 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         public void InitializeAdmin()
         {
             driver = new ChromeDriver();
-            driver.Url = "https://qa.millimanpixel.com";
-            //driver.Url = "https://preprod.millimanpixel.com/";
+            driver.Url = "https://pixel.com";
+            
 
             driver.Manage().Window.Maximize();
             loginPage = new LoginPage(driver);
@@ -56,10 +56,6 @@ namespace Milliman.Pixel.Web.Tests.TestCases
             var dataProcessingStatus = new DataProcessingStatusPage(driver);
 
             Utils.WaitUntilLoadingDisappears(driver);
-
-            //Assert.True(driver.Url.Equals("https://qa.millimanpixel.com/Integration/DataProcessingStatus"),
-            //    "Data processing Page is not opened");
-
             dataProcessingStatus.CheckRefreshRateToMinimum();
 
             Assert.Multiple(() =>
