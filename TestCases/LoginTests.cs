@@ -44,7 +44,7 @@ namespace Milliman.Pixel.Web.Tests.TestCases
         {
             loginPage.LoginToApplication("10_testuser@test1.com", "3266");
 
-            Assert.AreEqual("Failed Login. Please contact pixelsupport@millimanpixel.com for assistance",
+            Assert.AreEqual("Failed Login. Please contact support@pixel.com for assistance",
                 loginPage.FailedLoginMessageLocator.Text, "Incorrect error message");
         }
 
